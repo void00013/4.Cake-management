@@ -3,7 +3,7 @@ import request from 'umi-request'
 
 request.interceptors.request.use(
   (url: any, options: any) => {
-    // console.log('请求拦截器', url, options);
+    console.log('请求拦截器', url, options);
     url = `https://fxbpezlc.lc-cn-n1-shared.com/1.1${url}`
     options.headers = {
       'X-LC-Id': 'FxBPezLctNB0zgZpqcye1L9a-gzGzoHsz',
