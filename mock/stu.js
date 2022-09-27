@@ -5,7 +5,7 @@ const dataList = mockjs.mock({
   msg: '学员列表加载成功',
   'results|100': [
     {
-      'key|+1': 1,
+      'objectId|+1': 1,
       name: '@cname',
       score: '@integer(50, 100)',
       city: '@city',

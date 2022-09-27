@@ -48,11 +48,11 @@ const Stu = () => {
       title: '操作',
       key: 'action',
       render: (_: any, record: any) => {
-        // console.log(record)
+        // console.log('学生列表', record)
         return (
         <Space size="middle">
           <Button type="primary" size="small" ghost>修改</Button>
-          <Button type="primary" size="small" danger ghost onClick={() => itemDel(record.key)}>删除</Button>
+          <Button type="primary" size="small" danger ghost onClick={() => itemDel(record.objectId)}>删除</Button>
         </Space>
       )},
     },
@@ -62,6 +62,7 @@ const Stu = () => {
   const [loading, setLoading] = useState(true)
 
   const getData = () => {
+    console.log('get获取')
     stuGet()
     .then(res => {
       console.log(res)
@@ -72,10 +73,14 @@ const Stu = () => {
     .catch(err => console.log(err))
   }
 
-  const itemDel = (key: number) => {
-    stuDel(key)
+  const itemDel = (objectId: number) => {
+    // console.log(objectId)
+    stuDel(objectId)
     .then(res => {
-      if(res.code !== 200) return
+      // mock接口
+      // if(res.code !== 200) return
+      // leancloud接口删除成功返回一个空对象
+      if(res.results) return
       getData()
     })
     .catch(err => console.log(err))
@@ -83,7 +88,7 @@ const Stu = () => {
   useEffect(() => {
     getData()
   }, [])
-  return <Table loading={loading} columns={columns} dataSource={data} rowKey="key"/>;
+  return <Table loading={loading} columns={columns} dataSource={data} rowKey="objectId"/>;
 }
 
 export default Stu;
